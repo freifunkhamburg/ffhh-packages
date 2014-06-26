@@ -11,6 +11,15 @@ f.reset = false
 f.template = "gluon-config-mode/cbi/wizard"
 f.submit = "Fertig"
 
+if uci:get_bool("autoupdater", "settings", "enabled")  then
+  f:set(nil, "autoupdater_msg", [[Dieser Knoten aktualisiert seine Firmware <b>automatisch</b>,
+  sobald eine neue Version vorliegt. Falls du dies nicht möchtest,
+  kannst du die Funktion im <i>Expertmode</i> deaktivieren.]])
+else
+  f:set(nil, "autoupdater_msg", [[Dieser Knoten aktualisiert seine Firmware <b>nicht automatisch</b>.
+  Diese Funktion kannst du im <i>Expertmode</i> aktivieren.]])
+end
+
 s = f:section(SimpleSection, nil, nil)
 
 o = s:option(Value, "_hostname", "Name dieses Knotens")
