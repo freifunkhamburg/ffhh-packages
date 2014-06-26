@@ -3,21 +3,21 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=gluon-config-mode
+PKG_NAME:=ffhh-config-mode
 PKG_VERSION:=2
 
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/gluon-config-mode
+define Package/ffhh-config-mode
   SECTION:=gluon
   CATEGORY:=Gluon
   TITLE:=Luci based config mode for user friendly setup of new meshnodes
   DEPENDS:=+gluon-luci-core +gluon-lock-password +gluon-node-info +gluon-simple-tc +uhttpd +dnsmasq +ip
 endef
 
-define Package/gluon-config-mode/description
+define Package/ffhh-config-mode/description
 	Luci based config mode
 endef
 
@@ -31,8 +31,8 @@ endef
 define Build/Compile
 endef
 
-define Package/gluon-config-mode/install
+define Package/ffhh-config-mode/install
 	$(CP) ./files/* $(1)/
 endef
 
-$(eval $(call BuildPackage,gluon-config-mode))
+$(eval $(call BuildPackage,ffhh-config-mode))
