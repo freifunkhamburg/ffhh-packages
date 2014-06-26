@@ -21,6 +21,10 @@
             <%= pubkey %>
           </div>
         </fieldset>
+        <% else %>
+        <p>
+          <%= luci.template.render_string(site.config_mode.msg_nopubkey) %> 
+        </p>
         <% end %>
         <fieldset class="cbi-section">
           <%= luci.template.render_string(site.config_mode.msg_reboot) %>
