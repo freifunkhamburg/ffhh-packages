@@ -15,6 +15,7 @@ define Package/gluon-config-mode-ffhh
   CATEGORY:=Gluon
   TITLE:=Luci based config mode for user friendly setup of new meshnodes
   DEPENDS:=+gluon-luci-core +gluon-lock-password +gluon-node-info +gluon-simple-tc +uhttpd +dnsmasq +ip
+  PROVIDES:=gluon-config-mode
 endef
 
 define Package/gluon-config-mode-ffhh/description
