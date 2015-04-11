@@ -7,6 +7,8 @@ PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 
 include $(GLUONDIR)/include/package.mk
 
+PKG_CONFIG_DEPENDS += $(GLUON_I18N_CONFIG)
+
 define Package/gluon-config-mode-reboot-ffhh
   SECTION:=gluon
   CATEGORY:=Gluon
@@ -28,9 +30,5 @@ define Package/gluon-config-mode-reboot-ffhh/install
 	$(CP) ./files/* $(1)/
 endef
 
-define Package/gluon-config-mode-reboot-ffhh/postinst
-#!/bin/sh
-$(call GluonCheckSite,check_site.lua)
-endef
-
 $(eval $(call BuildPackage,gluon-config-mode-reboot-ffhh))
+
