@@ -30,7 +30,7 @@ define Package/fastd-traffic-status/install
 	$(INSTALL_DIR) $(1)/lib/gluon/announce/statistics.d
 	$(CP) $(PKG_BUILD_DIR)/traffic_fastd $(1)/lib/gluon/announce/statistics.d/traffic_fastd
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(CP) $(PKG_BUILD_DIR)/fastd-status $(1)/usr/bin/fastd-status
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/fastd-status $(1)/usr/bin/fastd-status
 endef
 
 $(eval $(call BuildPackage,fastd-traffic-status))
