@@ -1,0 +1,22 @@
+#!/usr/bin/lua
+
+local site = require 'gluon.site_config'
+local fs = require 'nixio.fs'
+
+local sitecode = site.site_code
+
+if sitecode == 'ffhh-sued' then
+  domain = 'ffhh_sued'
+elseif sitecode == 'ffhh-west' then
+  domain = 'ffhh_west'
+elseif sitecode == 'ffhh-nowe' then
+  domain = 'ffhh_nowe'
+elseif sitecode == 'ffhh-ost' then
+  domain = 'ffhh_ost'
+else
+  domain = 'ffhh_nowe'
+end
+
+local content = 'config core \'core\'\n\toption domain \'' .. domain .. '\'\n'
+
+fs.writefile('/etc/config/gluon', content)
