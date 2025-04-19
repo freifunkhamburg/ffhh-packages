@@ -1,0 +1,27 @@
+#!/usr/bin/lua
+
+local uci=require('simple-uci').cursor()
+
+local function has_static_role(section)
+	for _, role in ipairs(section.role or {}) do
+		if role == "static" then
+			return true
+		end
+	end
+	return false
+end
+
+uci:foreach('gluon', 'interface', function(s)
+	if has_static_role(s) then 
+		
+		uci:section('firewall','zone',s[".name"],{
+			name=s[".name"],
+			network=s[".name"],
+			input='ACCEPT',
+			output='ACCEPT',
+			forward='DROP',
+		})
+	end
+end)
+
+uci:save('firewall')

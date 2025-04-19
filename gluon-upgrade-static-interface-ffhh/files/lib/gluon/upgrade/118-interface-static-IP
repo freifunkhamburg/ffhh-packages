@@ -1,0 +1,34 @@
+#!/usr/bin/lua
+
+local uci=require('simple-uci').cursor()
+
+local function has_static_role(section)
+	for _, role in ipairs(section.role or {}) do
+		if role == "static" then
+			return true
+		end
+	end
+	return false
+end
+
+uci:foreach('gluon', 'interface', function(s)
+	if has_static_role(s) then 
+		-- io.stderr:write("+++ ")
+		-- io.stderr:write(s[".name"])
+		-- io.stderr:write("\n")
+
+		local config_section = { proto = "static" }
+		local mapping = { ipaddr = "ipaddr", ifname = "name", netmask = "netmask" }
+
+		for key, lookup in pairs(mapping) do
+			local value = uci:get('gluon', s[".name"], lookup)
+			if value then
+				config_section[key] = value
+			end
+		end
+
+		uci:section('network', 'interface', s[".name"], config_section)
+	end
+end)
+
+uci:save('network')
